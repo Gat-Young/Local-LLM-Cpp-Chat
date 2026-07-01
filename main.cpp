@@ -2,6 +2,11 @@
 #include <string>
 #include <vector>
 
+#ifdef _WIN32
+#include <windows.h>
+#include <clocale>
+#endif
+
 // 메시지가 어떤 역할인지 구분하기 위한 열거형입니다.
 // enum class를 사용하면 MessageRole::User처럼 역할 이름을 명확하게 쓸 수 있습니다.
 enum class MessageRole
@@ -21,6 +26,14 @@ struct Message
 
 int main()
 {
+#ifdef _WIN32
+    // Windows 콘솔은 기본 문자 인코딩이 UTF-8이 아닐 수 있습니다.
+    // 한글 문자열이 깨지지 않도록 콘솔의 입력과 출력을 UTF-8로 맞춥니다.
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    std::setlocale(LC_ALL, ".UTF-8");
+#endif
+
     // 사용자에게 프로그램의 목적과 종료 방법을 알려줍니다.
     std::cout << "Console Chat Step 2" << std::endl;
     std::cout << "Enter a message. Type /exit to quit." << std::endl;
