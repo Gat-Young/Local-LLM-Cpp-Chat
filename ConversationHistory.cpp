@@ -20,3 +20,8 @@ void ConversationHistory::clear()
 {
     messages.clear();
 }
+
+void ConversationHistory::replaceMessages(const std::vector<Message>& newMessages)
+{
+    messages = newMessages;
+}
