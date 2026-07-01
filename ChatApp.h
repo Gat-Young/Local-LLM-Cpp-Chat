@@ -5,6 +5,8 @@
 #include "ContextBuilder.h"
 #include "ConsoleUI.h"
 #include "IAIClient.h"
+#include "OllamaClient.h"
+#include "ConversationRepository.h"
 
 #include <string>
 
@@ -19,7 +21,9 @@ public:
         ConversationHistory& history,
         ConsoleUI& ui,
         ContextBuilder& contextBuilder,
-        IAIClient& aiClient);
+        OllamaClient& aiClient,
+        ConversationRepository& repository
+    );
 
     // 채팅 프로그램의 실행 루프를 시작합니다.
     void run();
@@ -42,6 +46,8 @@ private:
 
     // AI 응답 생성 인터페이스입니다. FakeAIClient나 OllamaClient가 이 자리에 들어올 수 있습니다.
     IAIClient& aiClient;
+
+    ConversationRepository& repository;
 };
 
 #endif

@@ -3,19 +3,26 @@
 #include "ConversationHistory.h"
 #include "ConsoleUI.h"
 #include "FakeAIClient.h"
+#include "OllamaClient.h"
+#include "AppConfigLoader.h"
+#include "ConversationRepository.h"
 
 int main()
 {
-    // main 함수는 프로그램 시작점입니다.
-    // 여기서는 필요한 객체를 만들고 ChatApp에 전달하는 조립 역할만 합니다.
-    ConversationHistory history;
-    ConsoleUI ui;
-    ContextBuilder contextBuilder;
-    FakeAIClient aiClient;
+    AppConfigLoader configLoader;
+    AppConfigLoadResult configResult = configLoader.load("config.ini");
+    AppConfig config = configResult.config;
 
-    // ChatApp은 IAIClient 인터페이스를 통해 AI를 사용하므로
-    // 나중에 FakeAIClient 대신 OllamaClient를 전달해도 실행 루프는 바뀌지 않습니다.
-    ChatApp app(history, ui, contextBuilder, aiClient);
+    ConsoleUI ui;
+    ConversationHistory history;
+    history.addMessage(MessageRole::System, "너는 친절한 로컬 AI assistant입니다.");
+
+    ContextBuilder contextBuilder(config.maxContextMessages);
+    //FakeAIClient aiClient;
+    OllamaClient aiClient(config);
+    ConversationRepository repository;
+
+    ChatApp app(history, ui, contextBuilder, aiClient, repository);
     app.run();
 
     return 0;
