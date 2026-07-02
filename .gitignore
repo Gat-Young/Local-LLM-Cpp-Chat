@@ -67,3 +67,39 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Visual Studio user/cache files
+.vs/
+*.suo
+*.user
+*.rsuser
+*.VC.db
+*.VC.VC.opendb
+*.opendb
+*.ipch
+*.iobj
+*.ipdb
+*.tlog
+*.recipe
+
+# Visual Studio build outputs
+x64/
+x86/
+Win32/
+Debug/
+Release/
+*/x64/
+*/x86/
+*/Win32/
+*/Debug/
+*/Release/
+
+# VS Code local launch settings
+.vscode/launch.json
+
+# Local runtime data
+data/
+conversation.json
+
+# Local config with machine-specific model names
+config.ini

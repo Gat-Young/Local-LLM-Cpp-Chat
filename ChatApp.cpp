@@ -29,9 +29,8 @@ ChatApp::ChatApp(
     ConversationHistory& history,
     ConsoleUI& ui,
     ContextBuilder& contextBuilder,
-    OllamaClient& aiClient,
-    ConversationRepository& repository
-)
+    IAIClient& aiClient,
+    ConversationRepository& repository)
     : history(history)
     , ui(ui)
     , contextBuilder(contextBuilder)

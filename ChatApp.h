@@ -5,7 +5,6 @@
 #include "ContextBuilder.h"
 #include "ConsoleUI.h"
 #include "IAIClient.h"
-#include "OllamaClient.h"
 #include "ConversationRepository.h"
 
 #include <string>
@@ -21,9 +20,8 @@ public:
         ConversationHistory& history,
         ConsoleUI& ui,
         ContextBuilder& contextBuilder,
-        OllamaClient& aiClient,
-        ConversationRepository& repository
-    );
+        IAIClient& aiClient,
+        ConversationRepository& repository);
 
     // 채팅 프로그램의 실행 루프를 시작합니다.
     void run();
